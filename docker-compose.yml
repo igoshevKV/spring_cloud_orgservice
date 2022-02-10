@@ -1,7 +1,7 @@
 version: '3.7'
 services:
 
-  organozationservice:
+  organizationservice:
     image: orgserv:latest
     ports:
       - "8075:8075"
@@ -9,12 +9,11 @@ services:
       SPRING_PROFILES_ACTIVE: "dev"
       SPRING_CLOUD_CONFIG_URI:
         http://192.168.0.207:8071
-    depends_on:
-      - postgres
     networks:
       backend:
         aliases:
-          - "orgserv"
+          - orgserv
 networks:
   backend:
-    driver: bridge
+    external:
+      name: backendnetwork
